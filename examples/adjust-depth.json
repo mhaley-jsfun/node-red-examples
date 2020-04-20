@@ -1,0 +1,62 @@
+[
+   {
+      "disabled" : false,
+      "label" : "Flow 1",
+      "info" : "",
+      "id" : "8bdea88.abe9658",
+      "type" : "tab"
+   },
+   {
+      "action" : "",
+      "from" : "",
+      "x" : 420,
+      "wires" : [
+         [
+            "e1a68487.819c28"
+         ]
+      ],
+      "to" : "",
+      "reg" : false,
+      "rules" : [
+         {
+            "pt" : "msg",
+            "t" : "set",
+            "tot" : "jsonata",
+            "to" : "payload +  1.0",
+            "p" : "payload"
+         }
+      ],
+      "y" : 60,
+      "type" : "change",
+      "name" : "Add 1.0",
+      "z" : "8bdea88.abe9658",
+      "property" : "",
+      "id" : "ca4ac3ec.4bba3"
+   },
+   {
+      "y" : 60,
+      "id" : "e1a68487.819c28",
+      "type" : "signalk-send-pathvalue",
+      "name" : "",
+      "x" : 630,
+      "wires" : [],
+      "z" : "8bdea88.abe9658"
+   },
+   {
+      "wires" : [
+         [
+            "ca4ac3ec.4bba3"
+         ]
+      ],
+      "x" : 170,
+      "y" : 60,
+      "type" : "signalk-subscribe",
+      "name" : "environment.depth.belowSurface",
+      "period" : 1000,
+      "z" : "8bdea88.abe9658",
+      "path" : "environment.depth.belowSurface",
+      "id" : "298fb1f.153a74e",
+      "flatten" : true,
+      "context" : "vessels.self"
+   }
+]

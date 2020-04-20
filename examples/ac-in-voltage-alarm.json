@@ -1,0 +1,173 @@
+[
+   {
+      "path" : "electrical.inverters.261.acin.voltage",
+      "x" : 410,
+      "name" : "clear AC in alarm",
+      "id" : "e515e21.ad267a",
+      "y" : 200,
+      "z" : "9d05e907.a5601",
+      "type" : "signalk-send-notification",
+      "wires" : [],
+      "state" : "normal",
+      "visual" : true,
+      "message" : "Not at Dock 1",
+      "sound" : true
+   },
+   {
+      "id" : "8407584d.56fce8",
+      "y" : 120,
+      "x" : 90,
+      "path" : "electrical.inverters.261.acin.voltage",
+      "name" : "AC in voltage",
+      "context" : "vessels.self",
+      "flatten" : true,
+      "period" : "30000",
+      "z" : "9d05e907.a5601",
+      "type" : "signalk-subscribe",
+      "wires" : [
+         [
+            "fb88306c.be22f8"
+         ]
+      ]
+   },
+   {
+      "lon" : "-76.4872533333333",
+      "type" : "signalk-geofence-switch",
+      "lat" : "39.063125",
+      "z" : "9d05e907.a5601",
+      "wires" : [
+         [
+            "46da94f5.8e7024"
+         ],
+         [
+            "e515e21.ad267a"
+         ]
+      ],
+      "context" : "vessels.self",
+      "x" : 260,
+      "name" : "at slip?",
+      "distance" : "15.24",
+      "myposition" : false,
+      "y" : 120,
+      "id" : "fb88306c.be22f8"
+   },
+   {
+      "delay" : "600000",
+      "type" : "signalk-delay",
+      "z" : "9d05e907.a5601",
+      "wires" : [
+         [
+            "b451f168.d20ff"
+         ]
+      ],
+      "y" : 280,
+      "id" : "aeb535ba.3236d8",
+      "x" : 580,
+      "name" : "10 minute delay"
+   },
+   {
+      "property" : "payload",
+      "outputLabels" : [
+         "off",
+         "on"
+      ],
+      "wires" : [
+         [
+            "3d33e1e8.848616"
+         ],
+         [
+            "cc84650b.92a908"
+         ]
+      ],
+      "checkall" : "false",
+      "type" : "switch",
+      "outputs" : 2,
+      "z" : "9d05e907.a5601",
+      "propertyType" : "msg",
+      "y" : 120,
+      "id" : "46da94f5.8e7024",
+      "rules" : [
+         {
+            "t" : "lt",
+            "v" : "100",
+            "vt" : "str"
+         },
+         {
+            "vt" : "str",
+            "t" : "gte",
+            "v" : "100"
+         }
+      ],
+      "name" : "check voltage",
+      "x" : 460,
+      "repair" : false
+   },
+   {
+      "reg" : false,
+      "wires" : [
+         [
+            "aeb535ba.3236d8"
+         ]
+      ],
+      "z" : "9d05e907.a5601",
+      "type" : "change",
+      "property" : "",
+      "to" : "",
+      "name" : "alarm",
+      "rules" : [
+         {
+            "pt" : "msg",
+            "tot" : "json",
+            "t" : "set",
+            "to" : "{\"state\":\"alarm\",\"message\":\"The power at dock 1 is OUT!\"}",
+            "p" : "payload"
+         }
+      ],
+      "x" : 630,
+      "id" : "3d33e1e8.848616",
+      "y" : 80,
+      "action" : "",
+      "from" : ""
+   },
+   {
+      "from" : "",
+      "id" : "cc84650b.92a908",
+      "y" : 160,
+      "action" : "",
+      "x" : 630,
+      "name" : "normal",
+      "rules" : [
+         {
+            "t" : "set",
+            "to" : "{\"state\":\"normal\",\"message\":\"The power is on at Dock 1\"}",
+            "p" : "payload",
+            "pt" : "msg",
+            "tot" : "json"
+         }
+      ],
+      "to" : "",
+      "property" : "",
+      "z" : "9d05e907.a5601",
+      "type" : "change",
+      "reg" : false,
+      "wires" : [
+         [
+            "aeb535ba.3236d8"
+         ]
+      ]
+   },
+   {
+      "sound" : true,
+      "message" : "",
+      "visual" : true,
+      "state" : "normal",
+      "wires" : [],
+      "z" : "9d05e907.a5601",
+      "type" : "signalk-send-notification",
+      "id" : "b451f168.d20ff",
+      "y" : 280,
+      "name" : "AC in alarm",
+      "x" : 750,
+      "path" : "electrical.inverters.261.acin.voltage"
+   }
+]

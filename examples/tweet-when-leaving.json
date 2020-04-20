@@ -1,0 +1,253 @@
+[
+   {
+      "disabled" : false,
+      "label" : "Flow 1",
+      "info" : "",
+      "id" : "8bdea88.abe9658",
+      "type" : "tab"
+   },
+   {
+      "wires" : [
+         [
+            "e1a68487.819c28"
+         ]
+      ],
+      "type" : "change",
+      "property" : "",
+      "y" : 60,
+      "to" : "",
+      "from" : "",
+      "name" : "Add 1.0",
+      "rules" : [
+         {
+            "to" : "payload +  1.0",
+            "t" : "set",
+            "tot" : "jsonata",
+            "p" : "payload",
+            "pt" : "msg"
+         }
+      ],
+      "action" : "",
+      "id" : "ca4ac3ec.4bba3",
+      "z" : "8bdea88.abe9658",
+      "x" : 420,
+      "reg" : false
+   },
+   {
+      "source" : "",
+      "type" : "signalk-send-pathvalue",
+      "wires" : [],
+      "y" : 60,
+      "name" : "",
+      "x" : 630,
+      "z" : "8bdea88.abe9658",
+      "id" : "e1a68487.819c28"
+   },
+   {
+      "id" : "298fb1f.153a74e",
+      "z" : "8bdea88.abe9658",
+      "period" : 1000,
+      "x" : 170,
+      "name" : "environment.depth.belowSurface",
+      "context" : "vessels.self",
+      "y" : 60,
+      "path" : "environment.depth.belowSurface",
+      "type" : "signalk-subscribe",
+      "wires" : [
+         [
+            "45de362b.566a"
+         ]
+      ],
+      "flatten" : true
+   },
+   {
+      "context" : "vessels.self",
+      "name" : "",
+      "y" : 460,
+      "myposition" : false,
+      "lon" : "-77.4872533333333",
+      "id" : "99b572f6.2f8c2",
+      "z" : "8bdea88.abe9658",
+      "period" : "1000",
+      "x" : 100,
+      "distance" : "15",
+      "lat" : "39.063125",
+      "wires" : [
+         [],
+         [],
+         [
+            "aef0ca4c.06048"
+         ]
+      ],
+      "type" : "signalk-geofence"
+   },
+   {
+      "tosidebar" : true,
+      "console" : false,
+      "wires" : [],
+      "type" : "debug",
+      "complete" : "false",
+      "name" : "",
+      "y" : 280,
+      "id" : "c131f134.027278",
+      "tostatus" : false,
+      "z" : "8bdea88.abe9658",
+      "active" : true,
+      "x" : 710
+   },
+   {
+      "distance" : 10,
+      "lat" : "39.063125",
+      "type" : "signalk-geofence-switch",
+      "wires" : [
+         [
+            "9954903e.c3801"
+         ],
+         [
+            "ca4ac3ec.4bba3"
+         ]
+      ],
+      "y" : 220,
+      "name" : "",
+      "context" : "vessels.self",
+      "myposition" : false,
+      "id" : "45de362b.566a",
+      "z" : "8bdea88.abe9658",
+      "lon" : "-76.4872533333333",
+      "x" : 260,
+      "period" : 10000
+   },
+   {
+      "name" : "",
+      "y" : 240,
+      "tostatus" : false,
+      "z" : "8bdea88.abe9658",
+      "id" : "9954903e.c3801",
+      "active" : true,
+      "x" : 560,
+      "tosidebar" : true,
+      "console" : false,
+      "complete" : "false",
+      "wires" : [],
+      "type" : "debug"
+   },
+   {
+      "func" : "rbei",
+      "type" : "rbe",
+      "wires" : [
+         [
+            "343ef262.95945e"
+         ]
+      ],
+      "property" : "payload",
+      "gap" : "",
+      "start" : "",
+      "inout" : "out",
+      "z" : "8bdea88.abe9658",
+      "id" : "aef0ca4c.06048",
+      "x" : 320,
+      "y" : 460,
+      "name" : "block unless changed"
+   },
+   {
+      "repair" : false,
+      "checkall" : "true",
+      "name" : "",
+      "rules" : [
+         {
+            "vt" : "str",
+            "v" : "outside",
+            "t" : "eq"
+         },
+         {
+            "vt" : "str",
+            "v" : "inside",
+            "t" : "eq"
+         }
+      ],
+      "y" : 560,
+      "x" : 370,
+      "outputs" : 2,
+      "z" : "8bdea88.abe9658",
+      "id" : "343ef262.95945e",
+      "propertyType" : "msg",
+      "outputLabels" : [
+         "outside",
+         "inside"
+      ],
+      "type" : "switch",
+      "wires" : [
+         [
+            "ec735054.a2362"
+         ],
+         [
+            "916b417.377c4c"
+         ]
+      ],
+      "property" : "payload"
+   },
+   {
+      "twitter" : "",
+      "wires" : [],
+      "type" : "twitter out",
+      "name" : "Tweet",
+      "y" : 560,
+      "x" : 770,
+      "id" : "c97f4062.dd2498",
+      "z" : "8bdea88.abe9658"
+   },
+   {
+      "property" : "",
+      "wires" : [
+         [
+            "c97f4062.dd2498"
+         ]
+      ],
+      "type" : "change",
+      "x" : 570,
+      "reg" : false,
+      "z" : "8bdea88.abe9658",
+      "action" : "",
+      "id" : "ec735054.a2362",
+      "from" : "",
+      "name" : "I'm heading out to sea!!",
+      "rules" : [
+         {
+            "to" : "I'm heading out to sea!!",
+            "pt" : "msg",
+            "p" : "payload",
+            "t" : "set",
+            "tot" : "str"
+         }
+      ],
+      "to" : "",
+      "y" : 520
+   },
+   {
+      "x" : 560,
+      "reg" : false,
+      "id" : "916b417.377c4c",
+      "action" : "",
+      "z" : "8bdea88.abe9658",
+      "from" : "",
+      "rules" : [
+         {
+            "to" : "I'm back at the slip :(",
+            "pt" : "msg",
+            "p" : "payload",
+            "t" : "set",
+            "tot" : "str"
+         }
+      ],
+      "name" : "I'm back at the slip :(",
+      "y" : 600,
+      "to" : "",
+      "property" : "",
+      "wires" : [
+         [
+            "c97f4062.dd2498"
+         ]
+      ],
+      "type" : "change"
+   }
+]

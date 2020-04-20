@@ -1,0 +1,44 @@
+{
+  "name": "@signalk/node-red-embedded",
+  "version": "2.17.2",
+  "description": "Node red nodes for use with the signalk-node-red plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "changelog": "github-changes -o signalk -r node-red-embedded -a --only-pulls --use-commit-body --data=pulls  --tag-name=v$npm_package_version",
+    "release": "git tag -d v$npm_package_version; npm run changelog && git add CHANGELOG.md && git commit -m 'chore: update changelog' && git tag v$npm_package_version && git push --tags && git push"
+  },
+  "author": "Scott Bender",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "github-changes": "^1.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SignalK/node-red-embedded"
+  },
+  "keywords": [
+    "node-red"
+  ],
+  "node-red": {
+    "nodes": {
+      "signalk-subscribe": "signalk-subscribe.js",
+      "signalk-notification-": "signalk-notification.js",
+      "signalk-on-delta": "signalk-on-delta.js",
+      "signalk-app-event": "signalk-app-event.js",
+      "signalk-flatten-delta": "signalk-flatten-delta.js",
+      "signalk-send-pathvalue": "signalk-send-pathvalue.js",
+      "signalk-send-delta": "signalk-send-delta.js",
+      "signalk-send-notification": "signalk-send-notification.js",
+      "signalk-send-put": "signalk-send-put.js",
+      "signalk-send-nmea2000": "signalk-send-nmea2000.js",
+      "signalk-send-nmea0183": "signalk-send-nmea0183.js",
+      "signalk-geofence": "signalk-geofence.js",
+      "signalk-geofence-switch": "signalk-geofence-switch.js",
+      "signalk-delay": "signalk-delay.js",
+      "signalk-put-handler": "signalk-put-handler.js",
+      "signalk-input-handler-next": "signalk-input-handler-next.js",
+      "signalk-input-handler": "signalk-input-handler.js"
+    }
+  }
+}

@@ -1,0 +1,87 @@
+[
+   {
+      "label" : "Flow 2",
+      "type" : "tab",
+      "info" : "",
+      "id" : "38336563.2cc8e2",
+      "disabled" : false
+   },
+   {
+      "rules" : [
+         {
+            "t" : "gt",
+            "vt" : "str",
+            "v" : "5.14"
+         },
+         {
+            "v" : "5.14",
+            "vt" : "str",
+            "t" : "lte"
+         }
+      ],
+      "id" : "2d45410c.6ca7ae",
+      "type" : "switch",
+      "z" : "38336563.2cc8e2",
+      "property" : "payload",
+      "propertyType" : "msg",
+      "y" : 100,
+      "repair" : false,
+      "x" : 430,
+      "checkall" : "true",
+      "outputs" : 2,
+      "wires" : [
+         [
+            "a5b5aa6.69c9258"
+         ],
+         [
+            "14796038.fb8e78"
+         ]
+      ],
+      "name" : "if over 5.14"
+   },
+   {
+      "y" : 60,
+      "visual" : true,
+      "wires" : [],
+      "message" : "The wind speed is over 10 knots",
+      "name" : "send alarm",
+      "path" : "highWindSpeed",
+      "x" : 630,
+      "state" : "alarm",
+      "z" : "38336563.2cc8e2",
+      "type" : "signalk-send-notification",
+      "id" : "a5b5aa6.69c9258",
+      "sound" : true
+   },
+   {
+      "sound" : true,
+      "type" : "signalk-send-notification",
+      "z" : "38336563.2cc8e2",
+      "id" : "14796038.fb8e78",
+      "state" : "normal",
+      "name" : "clear alarm",
+      "wires" : [],
+      "message" : "The wind speed is normal",
+      "path" : "highWindSpeed",
+      "x" : 630,
+      "visual" : true,
+      "y" : 160
+   },
+   {
+      "type" : "signalk-subscribe",
+      "z" : "38336563.2cc8e2",
+      "context" : "vessels.self",
+      "id" : "ef25bd1f.baa4b",
+      "flatten" : true,
+      "name" : "environment.wind.speedApparent",
+      "wires" : [
+         [
+            "2d45410c.6ca7ae"
+         ]
+      ],
+      "path" : "environment.wind.speedApparent",
+      "x" : 180,
+      "y" : 100,
+      "period" : "5000"
+   }
+]
